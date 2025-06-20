@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
+import NavbarComponent from './components/NavbarComponent.vue'
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-      </nav>
-    </div>
-  </header>
+  <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+
+  <NavbarComponent />
+  <RouterView />
+  </div>
 </template>
 
 <style scoped></style>
