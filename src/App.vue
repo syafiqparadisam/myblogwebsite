@@ -3,10 +3,9 @@ import NavbarComponent from './components/NavbarComponent.vue'
 </script>
 
 <template>
-  <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
-
-  <NavbarComponent />
-  <RouterView />
+  <div className="min-h-screen">
+    <NavbarComponent />
+    <RouterView />
   </div>
 </template>
 

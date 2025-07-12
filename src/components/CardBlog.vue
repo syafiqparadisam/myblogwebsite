@@ -1,0 +1,57 @@
+<template>
+  <router-link :to="path">
+    <div class="max-w-xs bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
+      <!-- Header Image with Badge and Share Icon -->
+      <div class="relative">
+        <img :src="picture" class="w-full h-48 object-cover" />
+      </div>
+
+      <!-- Card Content -->
+      <div class="p-4">
+        <!-- Course Title -->
+        <h3 class="text-lg font-bold text-gray-900 mb-2">{{ title }}</h3>
+
+        <!-- Course Description -->
+        <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+          {{ desc }}
+        </p>
+        <div class="w-full gap-2 flex">
+          <div
+            v-for="tag in tags"
+            :key="tag"
+            class="p-2 text-xs flex w-max rounded-full bg-gray-200"
+          >
+            {{ tag }}
+          </div>
+        </div>
+        <!-- Course Details -->
+        <div class="flex items-center justify-between mt-3 text-sm">
+          <div class="flex items-center text-gray-600">
+            <BookOpen class="h-4 w-4 mr-1" />
+            <span>{{ reader }} reader</span>
+          </div>
+
+          <div class="flex items-center">
+            <Heart class="transition-all duration-200 text-gray-400" />
+            <span>{{ likeTotal }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </router-link>
+</template>
+
+<script setup lang="ts">
+import { Heart, BookOpen } from 'lucide-vue-next'
+
+// Define props
+defineProps<{
+  path: string
+  reader: number
+  likeTotal: number
+  title: string
+  tags: string[]
+  picture: string
+  desc: string
+}>()
+</script>
