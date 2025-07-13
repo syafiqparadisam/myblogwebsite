@@ -40,79 +40,115 @@ onMounted(() => {
 </script>
 
 <template>
-  <BlogComponent :tags="tags" :id="id" :total_like="totalLike" :date_published="datePublished" :reader="reader">
+  <BlogComponent
+    :tags="tags"
+    :id="id"
+    :total_like="totalLike"
+    :date_published="datePublished"
+    :reader="reader"
+  >
     <!-- Article Title and Meta -->
     <h1 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">
-      {{
-        isEnglish ? 'Was the Internet Ever Great or Was It Just My ADHD?' : 'Apakah internet hanya'
-      }}
+      Apa itu OpenPGP Encryption
     </h1>
 
     <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-      My ADHD manifests itself some of the feeling, but if there is one more thing
+      Di era digital saat ini, menjaga <strong>privasi dan keamanan data</strong> menjadi hal yang
+      sangat penting. Salah satu metode populer untuk melindungi komunikasi adalah dengan
+      <strong>OpenPGP encryption</strong>.
     </p>
 
     <!-- Featured Image -->
     <div class="relative">
-      <img
-        src=""
-        alt="Make the Internet Great Again hat with Matrix background"
-        class="w-full h-64 md:h-96 object-cover"
-      />
-      <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+      <img src="/images/pgp-encryption.webp" class="w-full h-64 md:h-96 object-cover" />
     </div>
 
     <!-- Article Content -->
     <div class="px-6 py-8">
-      <div class="prose prose-lg max-w-none">
-        <p class="text-gray-700 leading-relaxed mb-6">
-          We'd spend the first half hour for respect of the new person and would have to go to
-          someone. Well, I haven't read this some personal like the person ADHD is hard to come.
-          It's telling you I'd have a part with the person who would have to go to someone. Well, I
-          haven't read this some personal.
+      <div class="max-w-none">
+        <p class="mb-4">
+          <strong>OpenPGP (Pretty Good Privacy)</strong> adalah
+          <em>standar enkripsi data</em> berbasis kriptografi kunci publik. OpenPGP memungkinkan
+          kamu untuk:
         </p>
-
-        <p class="text-gray-700 leading-relaxed mb-6">
-          I'd spend some and would have to go there since the friend returns and would have to go to
-          someone. Well, I haven't read this some personal like the person ADHD is hard to come.
-          It's telling you I'd have a part with the person. So someone had that friend, when I tell
-          the people, I'd notice that I'd spend some and would have to go there since the friend
-          returns and would have to go to someone. Well, I haven't read this some personal.
-        </p>
-
-        <blockquote class="border-l-4 border-blue-500 pl-4 py-2 my-6 bg-blue-50 rounded-r">
-          <p class="text-gray-700 italic">
-            "It's really the social life, of both, as I go through everyone and would have to go to
-            someone. Well, I haven't read this some personal like the person ADHD is hard to come."
-          </p>
-        </blockquote>
-
-        <p class="text-gray-700 leading-relaxed mb-6">
-          The internet has fundamentally changed how we process information, interact with others,
-          and manage our attention. For those of us with ADHD, this digital landscape presents both
-          unprecedented opportunities and unique challenges that previous generations never had to
-          navigate.
-        </p>
-
-        <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">The Paradox of Digital Attention</h2>
-
-        <p class="text-gray-700 leading-relaxed mb-6">
-          While the internet provides instant access to information and communities, it also creates
-          an environment of constant distraction. The very features that make it powerful -
-          notifications, infinite scroll, algorithmic feeds - can be particularly challenging for
-          ADHD brains to manage effectively.
-        </p>
-
-        <ul class="list-disc list-inside text-gray-700 space-y-2 mb-6">
-          <li>Constant notifications disrupting focus</li>
-          <li>Infinite scroll feeding dopamine-seeking behavior</li>
-          <li>Information overload leading to decision paralysis</li>
-          <li>Social media comparison affecting self-esteem</li>
+        <ul class="list-disc list-inside mb-6 space-y-1">
+          <li>Mengirim pesan terenkripsi (hanya bisa dibaca oleh penerima tertentu)</li>
+          <li>Menandatangani pesan secara digital (untuk memastikan keaslian)</li>
         </ul>
 
-        <p class="text-gray-700 leading-relaxed">
-          Perhaps the question isn't whether the internet was ever "great," but rather how we can
-          shape our relationship with it to better serve our neurological needs and personal goals.
+        <h2 class="text-2xl font-semibold mt-8 mb-3 text-gray-900">🔑 Bagaimana Cara Kerjanya?</h2>
+        <p class="mb-4">OpenPGP menggunakan dua kunci:</p>
+        <ol class="list-decimal list-inside mb-4 space-y-1">
+          <li><strong>Public Key</strong> – dibagikan ke siapa saja</li>
+          <li><strong>Private Key</strong> – disimpan rahasia oleh pemilik</li>
+        </ol>
+        <p class="mb-6">
+          🔄 Kamu mengenkripsi pesan dengan <em>public key</em> milik penerima, dan penerima
+          mendekripsinya dengan <em>private key</em>-nya.
+        </p>
+
+        <h2 class="text-2xl font-semibold mt-8 mb-3 text-gray-900">🧪 Cara Menggunakan OpenPGP</h2>
+        <p class="mb-4">Berikut langkah-langkah umum untuk mulai menggunakan OpenPGP:</p>
+
+        <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">1. Install Aplikasi OpenPGP</h3>
+        <ul class="list-disc list-inside mb-4 space-y-1">
+          <li><strong>GnuPG (GPG)</strong> – command-line gratis</li>
+          <li><strong>Kleopatra</strong> – GUI untuk Windows atau linux</li>
+          <li><strong>Openkeychain</strong> – untuk android</li>
+          <li><strong>PGPro1</strong> – untuk ios</li>
+          <li><strong>ProtonMail</strong> – email terenkripsi otomatis</li>
+        </ul>
+
+        <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">2. Buat Key Pair</h3>
+        <pre class="bg-gray-900 text-green-300 p-4 rounded text-sm overflow-x-auto mb-4">
+gpg --full-generate-key
+    </pre
+        >
+
+        <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">3. Bagikan Public Key</h3>
+        <pre class="bg-gray-900 text-green-300 p-4 rounded text-sm overflow-x-auto mb-4">
+gpg --armor --export namamu@example.com &gt; publickey.asc
+    </pre
+        >
+
+        <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">4. Enkripsi Pesan</h3>
+        <pre class="bg-gray-900 text-green-300 p-4 rounded text-sm overflow-x-auto mb-4">
+gpg --encrypt --recipient email@example.com file.txt
+    </pre
+        >
+
+        <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">5. Dekripsi Pesan</h3>
+        <pre class="bg-gray-900 text-green-300 p-4 rounded text-sm overflow-x-auto mb-4">
+gpg --decrypt file.txt.gpg
+    </pre
+        >
+
+        <h2 class="text-2xl font-semibold mt-8 mb-3 text-gray-900">💡 Tips Keamanan</h2>
+        <ul class="list-disc list-inside mb-6 space-y-1">
+          <li>Simpan <strong>private key</strong> dengan aman</li>
+          <li>Gunakan <strong>passphrase yang kuat</strong></li>
+          <li>Backup kunci secara offline</li>
+        </ul>
+
+        <h2 class="text-2xl font-semibold mt-8 mb-3 text-gray-900">
+          ✅ Kapan Harus Menggunakan OpenPGP?
+        </h2>
+        <ul class="list-disc list-inside mb-6 space-y-1">
+          <li>Saat mengirim email sensitif</li>
+          <li>Berbagi file pribadi melalui cloud</li>
+          <li>Menandatangani dokumen digital</li>
+          <li>Proyek open source atau komunikasi internal tim</li>
+        </ul>
+
+        <h2 class="text-2xl font-semibold mt-8 mb-3 text-gray-900">✉️ Penutup</h2>
+        <p class="mb-2">
+          Dengan <strong>OpenPGP</strong>, kamu bisa menjaga komunikasi digital tetap aman dan
+          pribadi. Meski terlihat teknis, tools modern seperti ProtonMail atau GPG Suite mempermudah
+          penggunaannya.
+        </p>
+        <p>
+          Mulai dari mengenkripsi file penting, hingga mengirim email rahasia — OpenPGP bisa jadi
+          pilihan tepat untuk menjaga data dari mata-mata digital.
         </p>
       </div>
     </div>

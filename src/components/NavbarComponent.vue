@@ -6,7 +6,7 @@ const isOpen = ref(false)
 </script>
 
 <template>
-  <nav class="bg-white/80 border-b border-blue-100 sticky top-0 z-50">
+  <nav class="bg-white/80 border-b border-blue-100 sticky top-0 z-50 shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex w-full justify-between items-center h-16">
         <RouterLink to="/" class="flex items-center justify-center">

@@ -58,10 +58,10 @@
       </article>
       <!-- Article Footer -->
       <div class="px-6 py-6">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-4">
-            <span class="text-sm text-gray-500">Tags:</span>
-            <div class="flex space-x-2">
+        <div class="flex flex-wrap items-center justify-between">
+          <div class="flex flex-wrap items-center space-x-4">
+            <span class="text-sm text-gray-500 md:mb-0 mb-2">Tags:</span>
+            <div class="flex flex-wrap gap-2 space-x-2">
               <div
                 v-for="tag in tags"
                 :key="tag"
@@ -77,7 +77,7 @@
           </div>
           <div class="flex justify-center items-center flex-wrap">
             <div class="flex p-2">
-              <span class="text-sm text-gray-500 mr-1">Share :</span>
+              <span class="text-md text-gray-500">Share :</span>
               <button @click="copyLink">
                 <Link class="p-1 hover:cursor-pointer" />
               </button>
