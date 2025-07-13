@@ -1,13 +1,51 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import BlogComponent from '@/components/BlogComponent.vue'
 import CardBlog from '@/components/CardBlog.vue'
+import { useLanguageStore } from '@/store/language'
+const lang = useLanguageStore()
+const isEnglish = computed(() => lang.language === 'en')
+import { getTechBlog, getBlogByArticleCode } from '@/lib/query'
+import type { BlogStat } from '@/lib/types'
+import { ref, onMounted } from 'vue'
+
+const techBlog = ref<BlogStat[] | null>([])
+const tags = ref<string[]>([])
+const totalLike = ref<number>(0)
+const id = ref<number>(0)
+const reader = ref<number>(0)
+const datePublished = ref<Date>(new Date())
+async function getBlog() {
+  const data = await getBlogByArticleCode('openpgp_encryption')
+  tags.value = data.tags
+  id.value = data.id
+  reader.value = data.total_read
+  totalLike.value = data.like
+  datePublished.value = data.date_published
+}
+
+async function fetchTechBlog() {
+  try {
+    const data = await getTechBlog()
+    techBlog.value = data
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+onMounted(() => {
+  getBlog()
+  fetchTechBlog()
+})
 </script>
 
 <template>
-  <BlogComponent>
+  <BlogComponent :tags="tags" :id="id" :total_like="totalLike" :date_published="datePublished" :reader="reader">
     <!-- Article Title and Meta -->
     <h1 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">
-      Was the Internet Ever Great or Was It Just My ADHD?
+      {{
+        isEnglish ? 'Was the Internet Ever Great or Was It Just My ADHD?' : 'Apakah internet hanya'
+      }}
     </h1>
 
     <p class="text-lg text-gray-600 mb-6 leading-relaxed">
@@ -81,19 +119,21 @@ import CardBlog from '@/components/CardBlog.vue'
   </BlogComponent>
   <!-- Related Articles -->
   <section class="mt-12 mx-auto lg:max-w-4xl w-full flex flex-col justify-center pb-8 px-8">
-      <h2 class="text-2xl font-bold text-gray-900 text-left mb-6">Related Articles</h2>
+    <h2 class="text-2xl font-bold text-gray-900 text-left mb-6">Related Articles</h2>
     <div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <card-blog
-          picture="/images/pgp-encryption.webp"
-          path="/blog/tech/pgpencryption"
-          :reader="10"
-          title="OpenPGP Encryption"
-          :like-total="1"
-          desc="
-			OpenPGP is an open standard for encrypting and signing data, widely used for secure email communication.
-			"
-          :tags="['Cryptography', 'Cyber Security']"
+          v-for="blog in techBlog"
+          :key="blog.id"
+          :id="blog.id"
+          :picture="blog.picture_path"
+          :path="blog.path"
+          :reader="blog.total_read"
+          :title="blog.title"
+          :like-total="blog.like"
+          :desc="blog.description"
+          :tags="blog.tags"
+          :date_published="blog.date_published"
         />
       </div>
     </div>

@@ -19,15 +19,15 @@ import CategoryTabs from '@/components/CategoryTabs.vue'
 
           <div className="flex flex-wrap  items-center justify-center gap-8 pt-8">
             <div className="text-center">
-              <div className="lg:text-2xl text-md font-bold text-blue-900">10K+</div>
+              <div className="lg:text-2xl text-md font-bold text-blue-900">1k+</div>
               <div className="lg:text-sm text-xs text-blue-600">Active Readers</div>
             </div>
             <div className="text-center">
-              <div className="lg:text-2xl text-md font-bold text-blue-900">2</div>
+              <div className="lg:text-2xl text-md font-bold text-blue-900">1</div>
               <div className="lg:text-sm text-xs text-blue-600">Articles Published</div>
             </div>
             <div className="text-center">
-              <div className="lg:text-2xl text-md font-bold text-blue-900">1M+</div>
+              <div className="lg:text-2xl text-md font-bold text-blue-900">5k+</div>
               <div className="lg:text-sm text-xs text-blue-600">Monthly Readers</div>
             </div>
           </div>

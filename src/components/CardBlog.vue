@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="path">
+  <router-link :to="path" @click.prevent="handleClick">
     <div class="max-w-xs bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
       <!-- Header Image with Badge and Share Icon -->
       <div class="relative">
@@ -28,7 +28,7 @@
         <div class="flex items-center justify-between mt-3 text-sm">
           <div class="flex items-center text-gray-600">
             <BookOpen class="h-4 w-4 mr-1" />
-            <span>{{ reader }} reader</span>
+            <span>{{ reader }} read</span>
           </div>
 
           <div class="flex items-center">
@@ -36,6 +36,7 @@
             <span>{{ likeTotal }}</span>
           </div>
         </div>
+        <p class="text-xs mt-1 text-gray-400 italic">Published on {{ formattedDate }}</p>
       </div>
     </div>
   </router-link>
@@ -43,9 +44,12 @@
 
 <script setup lang="ts">
 import { Heart, BookOpen } from 'lucide-vue-next'
+import { useRouter } from 'vue-router'
+import { incrementTotalReadById } from '@/lib/query'
 
 // Define props
-defineProps<{
+const props = defineProps<{
+  id: number
   path: string
   reader: number
   likeTotal: number
@@ -53,5 +57,19 @@ defineProps<{
   tags: string[]
   picture: string
   desc: string
+  date_published: Date
 }>()
+
+const router = useRouter()
+
+async function handleClick() {
+  await incrementTotalReadById(props.id)
+  router.push(props.path)
+}
+
+const formattedDate = new Date(props.date_published).toLocaleDateString('en-US', {
+  month: 'long',
+  day: '2-digit',
+  year: 'numeric',
+})
 </script>
