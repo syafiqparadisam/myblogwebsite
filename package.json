@@ -1,7 +1,10 @@
 {
   "name": "myblogwebsite",
   "version": "0.0.0",
-  "private": true,
+  "packageManager": "yarn@4.9.1",
+  "installConfig": {
+    "pnp": false
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
