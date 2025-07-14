@@ -25,7 +25,7 @@ import { ref, onMounted } from 'vue'
 import { useHead } from '@vueuse/head'
 
 useHead({
-  title: 'Syafiq\' Blog | Tech ',
+  title: 'Syafiq Blog | Tech ',
   meta: [
     {
       name: 'description',
