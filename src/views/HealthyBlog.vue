@@ -13,7 +13,7 @@ import BlogsCategory from '@/components/BlogsCategory.vue'
 import { useHead } from '@vueuse/head'
 
 useHead({
-  title: 'Syafiq\' Blog | Healthy',
+  title: 'Syafiq Blog | Healthy',
   meta: [
     {
       name: 'description',
