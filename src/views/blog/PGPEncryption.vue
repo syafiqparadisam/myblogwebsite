@@ -11,7 +11,7 @@ import { ref, onMounted } from 'vue'
 import { useHead } from '@vueuse/head'
 
 useHead({
-  title: 'Syafiq\' Blog | OpenPGP Encryption',
+  title: 'Syafiq Blog | OpenPGP Encryption',
   meta: [
     {
       name: 'description',
