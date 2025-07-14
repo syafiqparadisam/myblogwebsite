@@ -5,7 +5,7 @@ import { onMounted, ref } from 'vue';
 import { useHead } from '@vueuse/head'
 
 useHead({
-  title: 'Syafiq\' Blog',
+  title: 'Syafiq Blog',
   meta: [
     {
       name: 'description',
