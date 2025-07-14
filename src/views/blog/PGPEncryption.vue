@@ -147,13 +147,13 @@ onMounted(() => {
 
 <p class="mb-4">{{ isEnglish ? 'Double click your own key until the left window appears' : 'Double tap ownkey hingga jendela di kiri tampil' }}</p>
 <p class="mb-4">Export</p>
-<img src="/images/mypubkey.png" alt="mypubkey" class="w-full h-110 object-cover object-top" />
+<img src="/images/mypubkey.png" alt="mypubkey" class="w-full h-full object-cover object-top" />
 
 <p class="mb-4">{{ isEnglish ? 'This is my public key, then copy it to clipboard' : 'Ini adalah publickey ku, lalu copy ke clipboard' }}</p>
 
 <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">4. {{ isEnglish ? 'Chat Online' : 'Komunikasi di Online Chat' }}</h3>
 <img src="/images/firstcomm.png" alt="firstcomm" class="w-full h-full object-cover" />
-<img src="/images/otherpubkey.png" alt="otherpubkey" class="w-full h-72 object-cover mt-2" />
+<img src="/images/otherpubkey.png" alt="otherpubkey" class="w-full h-full object-cover mt-2" />
 
 <p class="mb-4">{{ isEnglish ? 'Here we receive their public key, copy it and create a file containing it' : 'Disini kita mendapatkan public key orang itu, copy lalu buat file yang isinya publickey itu' }}</p>
 
