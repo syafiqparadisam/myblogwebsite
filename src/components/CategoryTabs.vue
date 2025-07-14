@@ -46,13 +46,41 @@
       <div
         v-if="activeTab === 'popular'"
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-      ></div>
+      >
+      <card-blog
+          v-for="blog in forYouBlog"
+          :key="blog.id"
+          :id="blog.id"
+          :picture="blog.picture_path"
+          :path="blog.path"
+          :reader="blog.total_read"
+          :title="blog.title"
+          :like-total="blog.like"
+          :desc="blog.description"
+          :tags="blog.tags"
+          :date_published="blog.date_published"
+        />
+    </div>
 
       <!-- Tab 3: Settings Cards -->
       <div
         v-if="activeTab === 'newblog'"
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-      ></div>
+      >
+      <card-blog
+          v-for="blog in forYouBlog"
+          :key="blog.id"
+          :id="blog.id"
+          :picture="blog.picture_path"
+          :path="blog.path"
+          :reader="blog.total_read"
+          :title="blog.title"
+          :like-total="blog.like"
+          :desc="blog.description"
+          :tags="blog.tags"
+          :date_published="blog.date_published"
+        />
+    </div>
     </div>
   </div>
 </template>

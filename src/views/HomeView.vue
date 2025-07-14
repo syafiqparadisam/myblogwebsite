@@ -2,6 +2,17 @@
 import CategoryTabs from '@/components/CategoryTabs.vue'
 import { getTotalArticle,getTotalReader, getTotalReaderPerMonth } from '@/lib/query'; 
 import { onMounted, ref } from 'vue';
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'Syafiq\' Blog',
+  meta: [
+    {
+      name: 'description',
+      content: 'This is a home',
+    },
+  ],
+})
 
 const totalArticle = ref<number | null>(0)
 const totalReader = ref<number | null>(0)

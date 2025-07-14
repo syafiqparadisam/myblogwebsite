@@ -48,8 +48,8 @@
         >
           <Mail class="w-6 h-6" /> syafiqparadisam@gmail.com
         </a>
-          <a
-          href="https://portofolio.syafiq-paradisam.my.id"
+        <a
+          href="https://portfolio.syafiq-paradisam.my.id"
           class="text-gray-400 flex gap-2 hover:text-red-400 transition-colors duration-200"
           aria-label="Email"
         >

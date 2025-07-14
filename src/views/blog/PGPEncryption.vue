@@ -8,6 +8,21 @@ const isEnglish = computed(() => lang.language === 'en')
 import { getTechBlog, getBlogByArticleCode } from '@/lib/query'
 import type { BlogStat } from '@/lib/types'
 import { ref, onMounted } from 'vue'
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'Syafiq\' Blog | OpenPGP Encryption',
+  meta: [
+    {
+      name: 'description',
+      content: 'This is a OpenPGP Encryption blog',
+    },
+    {
+      name: "keywords",
+      content: "openpgp, encryption,cryptography"
+    }
+  ],
+})
 
 const techBlog = ref<BlogStat[] | null>([])
 const tags = ref<string[]>([])

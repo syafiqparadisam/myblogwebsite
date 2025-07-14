@@ -10,4 +10,15 @@
 <script setup lang="ts">
 import BlogsCategory from '@/components/BlogsCategory.vue'
 // import CardBlog from '@/components/CardBlog.vue'
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'Syafiq\' Blog | Education',
+  meta: [
+    {
+      name: 'description',
+      content: 'This is a education blog',
+    },
+  ],
+})
 </script>
