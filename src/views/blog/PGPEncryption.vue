@@ -48,108 +48,189 @@ onMounted(() => {
     :reader="reader"
   >
     <!-- Article Title and Meta -->
-    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">
-      Apa itu OpenPGP Encryption
-    </h1>
+   <h1 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">
+  {{ isEnglish ? "What is OpenPGP Encryption" : "Apa itu OpenPGP Encryption" }}
+</h1>
 
-    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-      Di era digital saat ini, menjaga <strong>privasi dan keamanan data</strong> menjadi hal yang
-      sangat penting. Salah satu metode populer untuk melindungi komunikasi adalah dengan
-      <strong>OpenPGP encryption</strong>.
-    </p>
+<p class="text-lg text-gray-600 mb-6 leading-relaxed" 
+   v-html="isEnglish
+     ? 'In today\'s digital era, maintaining <strong>privacy and data security</strong> is crucial. One popular method to secure communication is <strong>OpenPGP encryption</strong>.'
+     : 'Di era digital saat ini, menjaga <strong>privasi dan keamanan data</strong> menjadi hal yang sangat penting. Salah satu metode populer untuk melindungi komunikasi adalah dengan <strong>OpenPGP encryption</strong>.'">
+</p>
 
-    <!-- Featured Image -->
-    <div class="relative">
-      <img src="/images/pgp-encryption.webp" class="w-full h-64 md:h-96 object-cover" />
-    </div>
 
-    <!-- Article Content -->
-    <div class="px-6 py-8">
-      <div class="max-w-none">
-        <p class="mb-4">
-          <strong>OpenPGP (Pretty Good Privacy)</strong> adalah
-          <em>standar enkripsi data</em> berbasis kriptografi kunci publik. OpenPGP memungkinkan
-          kamu untuk:
-        </p>
-        <ul class="list-disc list-inside mb-6 space-y-1">
-          <li>Mengirim pesan terenkripsi (hanya bisa dibaca oleh penerima tertentu)</li>
-          <li>Menandatangani pesan secara digital (untuk memastikan keaslian)</li>
-        </ul>
+<!-- Featured Image -->
+<div class="relative">
+  <img src="/images/pgp-encryption.webp" alt="Illustration of OpenPGP encryption" class="w-full h-full object-cover" />
+</div>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-3 text-gray-900">🔑 Bagaimana Cara Kerjanya?</h2>
-        <p class="mb-4">OpenPGP menggunakan dua kunci:</p>
-        <ol class="list-decimal list-inside mb-4 space-y-1">
-          <li><strong>Public Key</strong> – dibagikan ke siapa saja</li>
-          <li><strong>Private Key</strong> – disimpan rahasia oleh pemilik</li>
-        </ol>
-        <p class="mb-6">
-          🔄 Kamu mengenkripsi pesan dengan <em>public key</em> milik penerima, dan penerima
-          mendekripsinya dengan <em>private key</em>-nya.
-        </p>
+<!-- Article Content -->
+<div class="px-6 py-8">
+  <div class="max-w-none">
+    <p class="mb-4" v-html="isEnglish
+  ? '<strong>OpenPGP (Pretty Good Privacy)</strong> is a <em>data encryption standard</em> based on public key cryptography. OpenPGP allows you to:'
+  : '<strong>OpenPGP (Pretty Good Privacy)</strong> adalah <em>standar enkripsi data</em> berbasis kriptografi kunci publik. OpenPGP memungkinkan kamu untuk:'">
+</p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-3 text-gray-900">🧪 Cara Menggunakan OpenPGP</h2>
-        <p class="mb-4">Berikut langkah-langkah umum untuk mulai menggunakan OpenPGP:</p>
+<ul class="list-disc list-inside mb-6 space-y-1">
+  <li>{{ isEnglish ? "Send encrypted messages (readable only by the intended recipient)" : "Mengirim pesan terenkripsi (hanya bisa dibaca oleh penerima tertentu)" }}</li>
+  <li>{{ isEnglish ? "Digitally sign messages (to verify authenticity)" : "Menandatangani pesan secara digital (untuk memastikan keaslian)" }}</li>
+</ul>
 
-        <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">1. Install Aplikasi OpenPGP</h3>
-        <ul class="list-disc list-inside mb-4 space-y-1">
-          <li><strong>GnuPG (GPG)</strong> – command-line gratis</li>
-          <li><strong>Kleopatra</strong> – GUI untuk Windows atau linux</li>
-          <li><strong>Openkeychain</strong> – untuk android</li>
-          <li><strong>PGPro1</strong> – untuk ios</li>
-          <li><strong>ProtonMail</strong> – email terenkripsi otomatis</li>
-        </ul>
+<h2 class="text-2xl font-semibold mt-8 mb-3 text-gray-900">
+  {{ isEnglish ? "🔑 How Does It Work?" : "🔑 Bagaimana Cara Kerjanya?" }}
+</h2>
 
-        <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">2. Buat Key Pair</h3>
-        <pre class="bg-gray-900 text-green-300 p-4 rounded text-sm overflow-x-auto mb-4">
-gpg --full-generate-key
-    </pre
-        >
+<p class="mb-4">
+  {{ isEnglish ? "OpenPGP uses two keys:" : "OpenPGP menggunakan dua kunci:" }}
+</p>
 
-        <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">3. Bagikan Public Key</h3>
-        <pre class="bg-gray-900 text-green-300 p-4 rounded text-sm overflow-x-auto mb-4">
-gpg --armor --export namamu@example.com &gt; publickey.asc
-    </pre
-        >
+<ol class="list-decimal list-inside mb-4 space-y-1">
+  <li v-html="isEnglish 
+    ? '<strong>Public Key</strong> – shared with anyone' 
+    : '<strong>Public Key</strong> – dibagikan ke siapa saja'">
+  </li>
 
-        <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">4. Enkripsi Pesan</h3>
-        <pre class="bg-gray-900 text-green-300 p-4 rounded text-sm overflow-x-auto mb-4">
-gpg --encrypt --recipient email@example.com file.txt
-    </pre
-        >
+  <li v-html="isEnglish 
+    ? '<strong>Private Key</strong> – kept secret by the owner' 
+    : '<strong>Private Key</strong> – disimpan rahasia oleh pemilik'">
+  </li>
+</ol>
 
-        <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">5. Dekripsi Pesan</h3>
-        <pre class="bg-gray-900 text-green-300 p-4 rounded text-sm overflow-x-auto mb-4">
-gpg --decrypt file.txt.gpg
-    </pre
-        >
+<p class="mb-6" v-html="isEnglish 
+  ? '🔄 You encrypt a message using the recipient\'s <em>public key</em>, and they decrypt it with their <em>private key</em>.' 
+  : '🔄 Kamu mengenkripsi pesan dengan <em>public key</em> milik penerima, dan penerima mendekripsinya dengan <em>private key</em>-nya.'">
+</p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-3 text-gray-900">💡 Tips Keamanan</h2>
-        <ul class="list-disc list-inside mb-6 space-y-1">
-          <li>Simpan <strong>private key</strong> dengan aman</li>
-          <li>Gunakan <strong>passphrase yang kuat</strong></li>
-          <li>Backup kunci secara offline</li>
-        </ul>
+       <h2 class="text-2xl font-semibold mt-8 mb-3 text-gray-900">🧪 {{ isEnglish ? 'How to Use OpenPGP' : 'Cara Menggunakan OpenPGP' }}</h2>
+<p class="mb-4" v-html="isEnglish 
+  ? 'Here are general steps to start using OpenPGP:'
+  : 'Berikut langkah-langkah umum untuk mulai menggunakan OpenPGP:'"></p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-3 text-gray-900">
-          ✅ Kapan Harus Menggunakan OpenPGP?
-        </h2>
-        <ul class="list-disc list-inside mb-6 space-y-1">
-          <li>Saat mengirim email sensitif</li>
-          <li>Berbagi file pribadi melalui cloud</li>
-          <li>Menandatangani dokumen digital</li>
-          <li>Proyek open source atau komunikasi internal tim</li>
-        </ul>
+<h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">1. {{ isEnglish ? 'Install OpenPGP App' : 'Install Aplikasi OpenPGP' }}</h3>
+<ul class="list-disc list-inside mb-4 space-y-1">
+  <li><strong>GnuPG (GPG)</strong> – {{ isEnglish ? 'free command-line' : 'command-line gratis' }}</li>
+  <li><strong>Kleopatra</strong> – {{ isEnglish ? 'GUI for Windows or Linux' : 'GUI untuk Windows atau Linux' }}</li>
+  <li><strong>Openkeychain</strong> – {{ isEnglish ? 'for Android' : 'untuk Android' }}</li>
+  <li><strong>PGPro1</strong> – {{ isEnglish ? 'for iOS' : 'untuk iOS' }}</li>
+  <li><strong>ProtonMail</strong> – {{ isEnglish ? 'automatically encrypted email' : 'email terenkripsi otomatis' }}</li>
+</ul>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-3 text-gray-900">✉️ Penutup</h2>
-        <p class="mb-2">
-          Dengan <strong>OpenPGP</strong>, kamu bisa menjaga komunikasi digital tetap aman dan
-          pribadi. Meski terlihat teknis, tools modern seperti ProtonMail atau GPG Suite mempermudah
-          penggunaannya.
-        </p>
-        <p>
-          Mulai dari mengenkripsi file penting, hingga mengirim email rahasia — OpenPGP bisa jadi
-          pilihan tepat untuk menjaga data dari mata-mata digital.
-        </p>
+<h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">2. {{ isEnglish ? 'Create a Key Pair' : 'Buat Key Pair' }}</h3>
+<p class="mb-4" v-html="isEnglish 
+  ? 'Here I will demonstrate using Kleopatra on Linux'
+  : 'Disini aku akan contohkan dengan Kleopatra di Linux'"></p>
+<img src="/images/createkey.png" alt="createkey" class="w-full h-full object-cover" />
+
+<p class="mb-4">{{ isEnglish ? 'Click File > New OpenPGP Key Pair' : 'Klik File > New OpenPGP Key pair' }}</p>
+<p class="mb-4" v-html="isEnglish 
+  ? 'Enter your name and email (the email doesn\'t have to be personal, I just use a random one here)'
+  : 'Isi nama keymu dan email (email tidak harus email pribadi, disini saya hanya sembarangan saja)'"></p>
+
+<h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">3. {{ isEnglish ? 'Export your public key to the recipient' : 'Export publickeymu kepada orang yang akan kamu ajak komunikasi' }}</h3>
+<img src="/images/findpubkey.png" alt="findpubkey" class="w-full h-full object-cover" />
+
+<p class="mb-4">{{ isEnglish ? 'Double click your own key until the left window appears' : 'Double tap ownkey hingga jendela di kiri tampil' }}</p>
+<p class="mb-4">Export</p>
+<img src="/images/mypubkey.png" alt="mypubkey" class="w-full h-110 object-cover object-top" />
+
+<p class="mb-4">{{ isEnglish ? 'This is my public key, then copy it to clipboard' : 'Ini adalah publickey ku, lalu copy ke clipboard' }}</p>
+
+<h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">4. {{ isEnglish ? 'Chat Online' : 'Komunikasi di Online Chat' }}</h3>
+<img src="/images/firstcomm.png" alt="firstcomm" class="w-full h-full object-cover" />
+<img src="/images/otherpubkey.png" alt="otherpubkey" class="w-full h-72 object-cover mt-2" />
+
+<p class="mb-4">{{ isEnglish ? 'Here we receive their public key, copy it and create a file containing it' : 'Disini kita mendapatkan public key orang itu, copy lalu buat file yang isinya publickey itu' }}</p>
+
+<h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">5. {{ isEnglish ? 'Import Their Public Key' : 'Import publickey orang tadi' }}</h3>
+<img src="/images/importotherpubkey.png" alt="importotherpubkey" class="w-full h-full object-cover" />
+
+<p class="mb-4">{{ isEnglish ? 'Click File > Import > Select the file' : 'Klik File > Import > Pilih file yang isinya publickey orang tadi' }}</p>
+<img src="/images/certifyotherkey.png" alt="certifyotherkey" class="w-full mb-3 object-cover" />
+
+<p class="mb-4">Certify</p>
+<img src="/images/verifyotherwithownkey.png" alt="verifyotherwithownkey" class="w-full h-full object-cover" />
+
+<p class="mb-4">{{ isEnglish ? 'Certify with your own key' : 'Certify dengan key milikmu sendiri' }}</p>
+
+<h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">6. {{ isEnglish ? 'Encrypt the Message' : 'Enkripsi Pesan' }}</h3>
+<img src="/images/beginsignkey.png" alt="beginsignkey" class="w-full h-full object-cover" />
+
+<p class="mb-4">{{ isEnglish ? 'Before that, copy the message you want to send to clipboard' : 'Sebelum itu kalian copy message yang akan dikirim ke clipboard' }}</p>
+<span v-html="isEnglish 
+  ? 'Here I will send the message: &quot;Do you really sell that things ?&quot;'
+  : 'Disini saya akan mengirim pesan : &quot;Do you really sell that things ?&quot;'"></span>
+<p class="mb-4">Click > Tools > Clipboard > Sign/Encrypt</p>
+<img src="/images/choosereceiverkey.png" alt="choosereceiverkey" class="w-full h-full object-cover" />
+
+<p class="mb-4" v-html="isEnglish 
+  ? 'Choose <strong>Encrypt for others</strong> > select their key > <strong>Sign / Encrypt</strong> > Finish'
+  : 'Pilih <strong>Encrypt for others</strong> > pilih key orang tadi > <strong>Sign / Encrypt</strong> > Finish'"></p>
+
+<h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">7. {{ isEnglish ? 'Send the Encrypted Message' : 'Kirim Pesan Terenkripsi' }}</h3>
+<img src="/images/firstreply.png" alt="firstreply" class="w-full h-full object-cover" />
+<img src="/images/firstreplyfromppl.png" alt="firstreplyfromppl" class="w-full h-full mt-3 object-cover" />
+
+<p class="mb-4">{{ isEnglish 
+  ? 'Now they also send a message using your public key that you sent earlier, just like you did'
+  : 'Nah orang itu juga mengirim pesan menggunakan publickey kita yang kita kirim tadi, sama yang kita lakukan' }}</p>
+<p class="mb-4">{{ isEnglish ? 'Copy the message > Create a file containing it' : 'Copy message > Buat file yang isinya message itu' }}</p>
+
+<h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">8. {{ isEnglish ? 'Decrypt the Message' : 'Dekripsi Pesan' }}</h3>
+<p class="mb-4">{{ isEnglish ? 'Go back to Kleopatra > Decrypt / Verify' : 'Kembali ke Kleopatra > Decrypt / Verify' }}</p>
+<img src="/images/decrypting.png" alt="decrypting" class="w-full h-full object-cover" />
+<p class="mb-4">Click Save all</p>
+<p class="mb-4" v-html="isEnglish 
+  ? 'Then you will get the decrypted file named <code>answer.txt.out</code>'
+  : 'Maka akan tercipta file hasil dekripsi yaitu <code>answer.txt.out</code>'"></p>
+<img src="/images/messagefromppl.png" alt="messagefromppl" class="w-full h-full object-cover" />
+
+<p class="mb-4">{{ isEnglish ? 'The content of the message is:' : 'Isi message tersebut adalah' }}</p>
+<p class="mb-4" v-html="isEnglish 
+  ? '&quot;Yes, I sell it for 100$. Do u wanna buy ?&quot;'
+  : '&quot;Yes, I sell it for 100$. Do u wanna buy ?&quot;'"></p>
+
+<h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">9. {{ isEnglish ? 'Repeat the Steps' : 'Ulangi Step' }}</h3>
+<p class="mb-4">{{ isEnglish ? 'You can repeat steps 6 to 9 to encrypt and decrypt messages' : 'Setelah itu kalian bisa mengulangi langkah 6 sampai 9 untuk mengenkripsi dan mendekripsi message' }}</p>
+<p class="mb-4">{{ isEnglish 
+  ? 'This way, the chat provider doesn’t know what you’re sending because it’s encrypted. Only the person with the private key can read it.'
+  : 'Dengan cara ini pihak online chat tidak tahu menahu yang kamu kirim itu pesan apa, karena terenkripsi, yang tahu hanyalah orang yang punya private key' }}</p>
+
+
+       <h2 class="text-2xl font-semibold mt-8 mb-3 text-gray-900">
+  {{ isEnglish ? "💡 Security Tips" : "💡 Tips Keamanan" }}
+</h2>
+<ul class="list-disc list-inside mb-6 space-y-1">
+  <li v-html="isEnglish ? 'Keep your <strong>private key</strong> secure' : 'Simpan <strong>private key</strong> dengan aman'"></li>
+  <li v-html="isEnglish ? 'Use a <strong>strong passphrase</strong>' : 'Gunakan <strong>passphrase yang kuat</strong>'"></li>
+  <li>{{ isEnglish ? "Backup your key offline" : "Backup kunci secara offline" }}</li>
+</ul>
+
+<h2 class="text-2xl font-semibold mt-8 mb-3 text-gray-900">
+  {{ isEnglish ? "✅ When Should You Use OpenPGP?" : "✅ Kapan Harus Menggunakan OpenPGP?" }}
+</h2>
+<ul class="list-disc list-inside mb-6 space-y-1">
+  <li>{{ isEnglish ? "When sending sensitive emails" : "Saat mengirim email sensitif" }}</li>
+  <li>{{ isEnglish ? "Sharing personal files via cloud" : "Berbagi file pribadi melalui cloud" }}</li>
+  <li>{{ isEnglish ? "Signing digital documents" : "Menandatangani dokumen digital" }}</li>
+  <li>{{ isEnglish ? "Open source projects or internal team communication" : "Proyek open source atau komunikasi internal tim" }}</li>
+</ul>
+
+<h2 class="text-2xl font-semibold mt-8 mb-3 text-gray-900">
+  {{ isEnglish ? "✉️ Closing Thoughts" : "✉️ Penutup" }}
+</h2>
+<p class="mb-2">
+  <span v-html="isEnglish
+    ? 'With <strong>OpenPGP</strong>, you can keep digital communications secure and private. Even if it seems technical, modern tools like ProtonMail or GPG Suite make it easy to use.'
+    : 'Dengan <strong>OpenPGP</strong>, kamu bisa menjaga komunikasi digital tetap aman dan pribadi. Meski terlihat teknis, tools modern seperti ProtonMail atau GPG Suite mempermudah penggunaannya.'">
+  </span>
+</p>
+<p>
+  {{ isEnglish
+    ? "From encrypting important files to sending confidential emails — OpenPGP can be a great choice to protect data from digital spies."
+    : "Mulai dari mengenkripsi file penting, hingga mengirim email rahasia — OpenPGP bisa jadi pilihan tepat untuk menjaga data dari mata-mata digital." }}
+</p>
+
       </div>
     </div>
   </BlogComponent>

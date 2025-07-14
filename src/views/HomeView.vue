@@ -1,5 +1,34 @@
 <script setup lang="ts">
 import CategoryTabs from '@/components/CategoryTabs.vue'
+import { getTotalArticle,getTotalReader, getTotalReaderPerMonth } from '@/lib/query'; 
+import { onMounted, ref } from 'vue';
+
+const totalArticle = ref<number | null>(0)
+const totalReader = ref<number | null>(0)
+const totalReaderPerMonth = ref<number | null>(0)
+
+async function totalArticleFn() {
+  const result = await getTotalArticle()
+  totalArticle.value = result
+}
+
+
+async function totalReaderFn() {
+  const result = await getTotalReader()
+  totalReader.value = result
+}
+
+
+async function totalReaderPerMonthFn() {
+  const result = await getTotalReaderPerMonth()
+  totalReaderPerMonth.value = result
+}
+
+onMounted(() => {
+totalArticleFn()
+totalReaderFn()
+totalReaderPerMonthFn()
+})
 </script>
 
 <template>
@@ -19,15 +48,15 @@ import CategoryTabs from '@/components/CategoryTabs.vue'
 
           <div className="flex flex-wrap  items-center justify-center gap-8 pt-8">
             <div className="text-center">
-              <div className="lg:text-2xl text-md font-bold text-blue-900">1k+</div>
+              <div className="lg:text-2xl text-md font-bold text-blue-900">{{totalReader}}</div>
               <div className="lg:text-sm text-xs text-blue-600">Active Readers</div>
             </div>
             <div className="text-center">
-              <div className="lg:text-2xl text-md font-bold text-blue-900">1</div>
+              <div className="lg:text-2xl text-md font-bold text-blue-900">{{totalArticle}}</div>
               <div className="lg:text-sm text-xs text-blue-600">Articles Published</div>
             </div>
             <div className="text-center">
-              <div className="lg:text-2xl text-md font-bold text-blue-900">5k+</div>
+              <div className="lg:text-2xl text-md font-bold text-blue-900">{{totalReaderPerMonth}}</div>
               <div className="lg:text-sm text-xs text-blue-600">Monthly Readers</div>
             </div>
           </div>

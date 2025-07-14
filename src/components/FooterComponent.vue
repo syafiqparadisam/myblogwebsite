@@ -48,6 +48,13 @@
         >
           <Mail class="w-6 h-6" /> syafiqparadisam@gmail.com
         </a>
+          <a
+          href="https://portofolio.syafiq-paradisam.my.id"
+          class="text-gray-400 flex gap-2 hover:text-red-400 transition-colors duration-200"
+          aria-label="Email"
+        >
+        <Link2  class="w-6 h-6" /> https://portfolio.syafiq-paradisam.my.id
+        </a>
 
         <!-- Copyright -->
         <div class="text-center pt-4 border-t border-gray-800 w-full">
@@ -60,7 +67,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Github, Linkedin, Instagram, Mail } from 'lucide-vue-next'
+import { Github, Linkedin, Instagram, Mail, Link2 } from 'lucide-vue-next'
 
 const currentYear = computed(() => new Date().getFullYear())
 </script>
