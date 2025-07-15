@@ -12,6 +12,12 @@ import { useHead } from '@vueuse/head'
 
 useHead({
   title: 'Syafiq Blog | OpenPGP Encryption',
+   link: [
+    {
+      rel: "canonical",
+      href: `${import.meta.env.VITE_BASE_URL}/blog/tech/pgpencryption`
+    }
+  ],
   meta: [
     {
       name: 'description',
@@ -76,7 +82,7 @@ onMounted(() => {
 
 <!-- Featured Image -->
 <div class="relative">
-  <img src="/images/pgp-encryption.webp" alt="Illustration of OpenPGP encryption" class="w-full h-full object-cover" />
+  <img src="/images/blogs/pgpencryption/pgp-encryption.webp" alt="Illustration of OpenPGP encryption" class="w-full h-full object-cover" />
 </div>
 
 <!-- Article Content -->
@@ -135,7 +141,7 @@ onMounted(() => {
 <p class="mb-4" v-html="isEnglish 
   ? 'Here I will demonstrate using Kleopatra on Linux'
   : 'Disini aku akan contohkan dengan Kleopatra di Linux'"></p>
-<img src="/images/createkey.png" alt="createkey" class="w-full h-full object-cover" />
+<img src="/images/blogs/pgpencryption/createkey.png" alt="createkey" class="w-full h-full object-cover" />
 
 <p class="mb-4">{{ isEnglish ? 'Click File > New OpenPGP Key Pair' : 'Klik File > New OpenPGP Key pair' }}</p>
 <p class="mb-4" v-html="isEnglish 
@@ -143,48 +149,48 @@ onMounted(() => {
   : 'Isi nama keymu dan email (email tidak harus email pribadi, disini saya hanya sembarangan saja)'"></p>
 
 <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">3. {{ isEnglish ? 'Export your public key to the recipient' : 'Export publickeymu kepada orang yang akan kamu ajak komunikasi' }}</h3>
-<img src="/images/findpubkey.png" alt="findpubkey" class="w-full h-full object-cover" />
+<img src="/images/blogs/pgpencryption/findpubkey.png" alt="findpubkey" class="w-full h-full object-cover" />
 
 <p class="mb-4">{{ isEnglish ? 'Double click your own key until the left window appears' : 'Double tap ownkey hingga jendela di kiri tampil' }}</p>
 <p class="mb-4">Export</p>
-<img src="/images/mypubkey.png" alt="mypubkey" class="w-full h-full object-cover object-top" />
+<img src="/images/blogs/pgpencryption/mypubkey.png" alt="mypubkey" class="w-full h-full object-cover object-top" />
 
 <p class="mb-4">{{ isEnglish ? 'This is my public key, then copy it to clipboard' : 'Ini adalah publickey ku, lalu copy ke clipboard' }}</p>
 
 <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">4. {{ isEnglish ? 'Chat Online' : 'Komunikasi di Online Chat' }}</h3>
-<img src="/images/firstcomm.png" alt="firstcomm" class="w-full h-full object-cover" />
-<img src="/images/otherpubkey.png" alt="otherpubkey" class="w-full h-full object-cover mt-2" />
+<img src="/images/blogs/pgpencryption/firstcomm.png" alt="firstcomm" class="w-full h-full object-cover" />
+<img src="/images/blogs/pgpencryption/otherpubkey.png" alt="otherpubkey" class="w-full h-full object-cover mt-2" />
 
 <p class="mb-4">{{ isEnglish ? 'Here we receive their public key, copy it and create a file containing it' : 'Disini kita mendapatkan public key orang itu, copy lalu buat file yang isinya publickey itu' }}</p>
 
 <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">5. {{ isEnglish ? 'Import Their Public Key' : 'Import publickey orang tadi' }}</h3>
-<img src="/images/importotherpubkey.png" alt="importotherpubkey" class="w-full h-full object-cover" />
+<img src="/images/blogs/pgpencryption/importotherpubkey.png" alt="importotherpubkey" class="w-full h-full object-cover" />
 
 <p class="mb-4">{{ isEnglish ? 'Click File > Import > Select the file' : 'Klik File > Import > Pilih file yang isinya publickey orang tadi' }}</p>
-<img src="/images/certifyotherkey.png" alt="certifyotherkey" class="w-full mb-3 object-cover" />
+<img src="/images/blogs/pgpencryption/certifyotherkey.png" alt="certifyotherkey" class="w-full mb-3 object-cover" />
 
 <p class="mb-4">Certify</p>
-<img src="/images/verifyotherwithownkey.png" alt="verifyotherwithownkey" class="w-full h-full object-cover" />
+<img src="/images/blogs/pgpencryption/verifyotherwithownkey.png" alt="verifyotherwithownkey" class="w-full h-full object-cover" />
 
 <p class="mb-4">{{ isEnglish ? 'Certify with your own key' : 'Certify dengan key milikmu sendiri' }}</p>
 
 <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">6. {{ isEnglish ? 'Encrypt the Message' : 'Enkripsi Pesan' }}</h3>
-<img src="/images/beginsignkey.png" alt="beginsignkey" class="w-full h-full object-cover" />
+<img src="/images/blogs/pgpencryption/beginsignkey.png" alt="beginsignkey" class="w-full h-full object-cover" />
 
 <p class="mb-4">{{ isEnglish ? 'Before that, copy the message you want to send to clipboard' : 'Sebelum itu kalian copy message yang akan dikirim ke clipboard' }}</p>
 <span v-html="isEnglish 
   ? 'Here I will send the message: &quot;Do you really sell that things ?&quot;'
   : 'Disini saya akan mengirim pesan : &quot;Do you really sell that things ?&quot;'"></span>
 <p class="mb-4">Click > Tools > Clipboard > Sign/Encrypt</p>
-<img src="/images/choosereceiverkey.png" alt="choosereceiverkey" class="w-full h-full object-cover" />
+<img src="/images/blogs/pgpencryption/choosereceiverkey.png" alt="choosereceiverkey" class="w-full h-full object-cover" />
 
 <p class="mb-4" v-html="isEnglish 
   ? 'Choose <strong>Encrypt for others</strong> > select their key > <strong>Sign / Encrypt</strong> > Finish'
   : 'Pilih <strong>Encrypt for others</strong> > pilih key orang tadi > <strong>Sign / Encrypt</strong> > Finish'"></p>
 
 <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">7. {{ isEnglish ? 'Send the Encrypted Message' : 'Kirim Pesan Terenkripsi' }}</h3>
-<img src="/images/firstreply.png" alt="firstreply" class="w-full h-full object-cover" />
-<img src="/images/firstreplyfromppl.png" alt="firstreplyfromppl" class="w-full h-full mt-3 object-cover" />
+<img src="/images/blogs/pgpencryption/firstreply.png" alt="firstreply" class="w-full h-full object-cover" />
+<img src="/images/blogs/pgpencryption/firstreplyfromppl.png" alt="firstreplyfromppl" class="w-full h-full mt-3 object-cover" />
 
 <p class="mb-4">{{ isEnglish 
   ? 'Now they also send a message using your public key that you sent earlier, just like you did'
@@ -193,12 +199,12 @@ onMounted(() => {
 
 <h3 class="text-xl font-medium mt-6 mb-2 text-gray-800">8. {{ isEnglish ? 'Decrypt the Message' : 'Dekripsi Pesan' }}</h3>
 <p class="mb-4">{{ isEnglish ? 'Go back to Kleopatra > Decrypt / Verify' : 'Kembali ke Kleopatra > Decrypt / Verify' }}</p>
-<img src="/images/decrypting.png" alt="decrypting" class="w-full h-full object-cover" />
+<img src="/images/blogs/pgpencryption/decrypting.png" alt="decrypting" class="w-full h-full object-cover" />
 <p class="mb-4">Click Save all</p>
 <p class="mb-4" v-html="isEnglish 
   ? 'Then you will get the decrypted file named <code>answer.txt.out</code>'
   : 'Maka akan tercipta file hasil dekripsi yaitu <code>answer.txt.out</code>'"></p>
-<img src="/images/messagefromppl.png" alt="messagefromppl" class="w-full h-full object-cover" />
+<img src="/images/blogs/pgpencryption/messagefromppl.png" alt="messagefromppl" class="w-full h-full object-cover" />
 
 <p class="mb-4">{{ isEnglish ? 'The content of the message is:' : 'Isi message tersebut adalah' }}</p>
 <p class="mb-4" v-html="isEnglish 

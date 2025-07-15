@@ -10,28 +10,14 @@ export async function getTotalArticle() {
   return count
 }
 
-export async function getTotalReaderPerMonth() {
-  const today = new Date()
-  const year = today.getFullYear()
-  const month = today.getMonth() + 1 // bulan mulai dari 0
-
-  // Format awal bulan & akhir bulan
-  const start = `${year}-${String(month).padStart(2, '0')}-01`
-  const endDate = new Date(year, month, 0).getDate() // jumlah hari di bulan tsb
-  const end = `${year}-${String(month).padStart(2, '0')}-${endDate}`
-
-  const { data, error } = await supabase
-    .from('articles')
-    .select('total_read, created_at')
-    .gte('created_at', start)
-    .lte('created_at', end)
+export async function getTotalLike() {
+  const { data, error } = await supabase.from('articles').select('like', { count: 'exact' })
 
   if (error) {
     console.error(error)
     return null
   }
-
-  const total = data.reduce((sum, item) => sum + (item.total_read || 0), 0)
+  const total = data.reduce((sum, item) => sum + (item.like || 0), 0)
   return total
 }
 
@@ -42,7 +28,6 @@ export async function getTotalReader() {
     console.error(error)
     return null
   }
-console.log(data)
   const total = data.reduce((sum, item) => sum + (item.total_read || 0), 0)
   return total
 }

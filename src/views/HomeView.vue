@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import CategoryTabs from '@/components/CategoryTabs.vue'
-import { getTotalArticle,getTotalReader, getTotalReaderPerMonth } from '@/lib/query'; 
+import { getTotalArticle,getTotalLike,getTotalReader } from '@/lib/query'; 
 import { onMounted, ref } from 'vue';
 import { useHead } from '@vueuse/head'
 
 useHead({
   title: 'Syafiq Blog',
+  link: [
+    {
+      rel: "canonical",
+      href: `${import.meta.env.VITE_BASE_URL}`
+    }
+  ],
   meta: [
     {
       name: 'description',
@@ -16,7 +22,7 @@ useHead({
 
 const totalArticle = ref<number | null>(0)
 const totalReader = ref<number | null>(0)
-const totalReaderPerMonth = ref<number | null>(0)
+const totalLike = ref<number | null>(0)
 
 async function totalArticleFn() {
   const result = await getTotalArticle()
@@ -30,15 +36,15 @@ async function totalReaderFn() {
 }
 
 
-async function totalReaderPerMonthFn() {
-  const result = await getTotalReaderPerMonth()
-  totalReaderPerMonth.value = result
+async function totalLikes() {
+  const result = await getTotalLike()
+  totalLike.value = result
 }
 
 onMounted(() => {
 totalArticleFn()
 totalReaderFn()
-totalReaderPerMonthFn()
+totalLikes()
 })
 </script>
 
@@ -67,8 +73,8 @@ totalReaderPerMonthFn()
               <div className="lg:text-sm text-xs text-blue-600">Articles Published</div>
             </div>
             <div className="text-center">
-              <div className="lg:text-2xl text-md font-bold text-blue-900">{{totalReaderPerMonth}}</div>
-              <div className="lg:text-sm text-xs text-blue-600">Monthly Readers</div>
+              <div className="lg:text-2xl text-md font-bold text-blue-900">{{totalLike}}</div>
+              <div className="lg:text-sm text-xs text-blue-600">Total likes</div>
             </div>
           </div>
         </div>

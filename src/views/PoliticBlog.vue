@@ -14,6 +14,12 @@ import { useHead } from '@vueuse/head'
 
 useHead({
   title: 'Syafiq Blog | Politic',
+   link: [
+    {
+      rel: "canonical",
+      href: `${import.meta.env.VITE_BASE_URL}/blog/politic`
+    }
+  ],
   meta: [
     {
       name: 'description',
