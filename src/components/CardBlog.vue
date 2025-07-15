@@ -3,7 +3,7 @@
     <div class="max-w-xs bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
       <!-- Header Image with Badge and Share Icon -->
       <div class="relative">
-        <img :src="picture" class="w-full h-48 object-cover" />
+        <img :src="picture" :alt="picture" class="w-full h-48 object-cover" />
       </div>
 
       <!-- Card Content -->
