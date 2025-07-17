@@ -1,11 +1,11 @@
 <template>
-  <BlogsCategory title="Tech Blog">
-      <div class="w-full h-screen justify-center items-center" v-if="techBlog?.length == 0">
+  <BlogsCategory title="Finance Blog">
+      <div class="w-full h-screen justify-center items-center" v-if="financeBlog?.length == 0">
       <h1 class="text-2xl font-semibold mb-2">Artikel belum terbuat 😕</h1>
       <p class="text-gray-600">Konten sedang disiapkan. Silakan kembali lagi nanti!</p>
     </div>
     <card-blog 
-      v-for="blog in techBlog"
+      v-for="blog in financeBlog"
       :key="blog.id"
 	  :id="blog.id"
       :picture="blog.picture_path"
@@ -23,39 +23,39 @@
 <script setup lang="ts">
 import BlogsCategory from '@/components/BlogsCategory.vue'
 import CardBlog from '@/components/CardBlog.vue'
-import { getTechBlog } from '@/lib/query'
+import { getFinanceBlog} from '@/lib/query'
 import type { BlogStat } from '@/lib/types'
 import { ref, onMounted } from 'vue'
 import { useHead } from '@vueuse/head'
 
 useHead({
-  title: 'Syafiq Blog | Tech ',
+  title: 'Syafiq Blog | Finance ',
    link: [
     {
       rel: "canonical",
-      href: `${import.meta.env.VITE_BASE_URL}/blog/tech`
+      href: `${import.meta.env.VITE_BASE_URL}/blog/finance`
     }
   ],
   meta: [
     {
       name: 'description',
-      content: 'This is a tech blog',
+      content: 'This is a finance blog',
     },
   ],
 })
 
-const techBlog = ref<BlogStat[] | null>([])
+const financeBlog = ref<BlogStat[] | null>([])
 
-async function fetchTechBlog() {
+async function fetchFinanceBlog() {
   try {
-    const data = await getTechBlog()
-    techBlog.value = data
+    const data = await getFinanceBlog()
+    financeBlog.value = data
   } catch (err) {
     console.log(err)
   }
 }
 
 onMounted(() => {
-  fetchTechBlog()
+  fetchFinanceBlog()
 })
 </script>

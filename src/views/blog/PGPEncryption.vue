@@ -5,7 +5,7 @@ import CardBlog from '@/components/CardBlog.vue'
 import { useLanguageStore } from '@/store/language'
 const lang = useLanguageStore()
 const isEnglish = computed(() => lang.language === 'en')
-import { getTechBlog, getBlogByArticleCode } from '@/lib/query'
+import {  getBlogByArticleCode, getRelatedBlogExcept } from '@/lib/query'
 import type { BlogStat } from '@/lib/types'
 import { ref, onMounted } from 'vue'
 import { useHead } from '@vueuse/head'
@@ -30,7 +30,7 @@ useHead({
   ],
 })
 
-const techBlog = ref<BlogStat[] | null>([])
+const relatedBlog = ref<BlogStat[] | null>([])
 const tags = ref<string[]>([])
 const totalLike = ref<number>(0)
 const id = ref<number>(0)
@@ -45,10 +45,10 @@ async function getBlog() {
   datePublished.value = data.date_published
 }
 
-async function fetchTechBlog() {
+async function fetchRelatedBlog() {
   try {
-    const data = await getTechBlog()
-    techBlog.value = data
+    const data = await getRelatedBlogExcept('openpgp_encryption')
+    relatedBlog.value = data
   } catch (err) {
     console.log(err)
   }
@@ -56,7 +56,7 @@ async function fetchTechBlog() {
 
 onMounted(() => {
   getBlog()
-  fetchTechBlog()
+  fetchRelatedBlog()
 })
 </script>
 
@@ -261,7 +261,7 @@ onMounted(() => {
     <div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <card-blog
-          v-for="blog in techBlog"
+          v-for="blog in relatedBlog"
           :key="blog.id"
           :id="blog.id"
           :picture="blog.picture_path"

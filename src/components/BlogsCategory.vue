@@ -4,7 +4,7 @@
       <h1 class="text-3xl font-bold text-center text-gray-900 mb-8">{{ title }}</h1>
     </div>
     <hr class="text-gray-300 mb-5" />
-    <div class="flex flex-wrap justify-between gap-5 items-center">
+    <div class="flex flex-wrap gap-5">
       <slot></slot>
     </div>
   </div>

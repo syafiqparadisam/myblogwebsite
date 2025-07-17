@@ -3,8 +3,9 @@ import HomeView from '../views/HomeView.vue'
 import PGPEncryption from '@/views/blog/PGPEncryption.vue'
 import TechBlog from '@/views/TechBlog.vue'
 import EducationBlog from '@/views/EducationBlog.vue'
-import HealthyBlog from '@/views/HealthyBlog.vue'
+import FinanceBlog from '@/views/FinanceBlog.vue'
 import PoliticBlog from '@/views/PoliticBlog.vue'
+import MoneroCoin from '@/views/blog/MoneroCoin.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +20,11 @@ const router = createRouter({
       name: "PGPEncryption",
       component: PGPEncryption
     },
+      {
+      path: "/blog/tech/monero",
+      name: "MoneroCoinBlog",
+      component: MoneroCoin
+    },
     {
       path: "/blog/tech",
       name: "TechBlog",
@@ -30,15 +36,16 @@ const router = createRouter({
       component: EducationBlog
     },
     {
-      path: "/blog/healthy",
-      name: "HealthyBlog",
-      component: HealthyBlog
+      path: "/blog/finance",
+      name: "FinanceBlog",
+      component: FinanceBlog
     },
     {
       path: "/blog/politic",
       name: "PoliticBlog",
       component: PoliticBlog
-    }
+    },
+    
   ],
 })
 

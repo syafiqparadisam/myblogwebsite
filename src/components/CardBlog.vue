@@ -1,6 +1,6 @@
 <template>
   <router-link :to="path" @click.prevent="handleClick">
-    <div class="max-w-xs bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
+    <div class="max-w-xs bg-white rounded-lg  shadow-lg overflow-hidden border border-gray-200">
       <!-- Header Image with Badge and Share Icon -->
       <div class="relative">
         <img :src="picture" :alt="picture" class="w-full h-48 object-cover" />
@@ -12,7 +12,7 @@
         <h3 class="text-lg font-bold text-gray-900 mb-2">{{ title }}</h3>
 
         <!-- Course Description -->
-        <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+        <p class="text-sm text-gray-600 mb-4 leading-relaxed line-clamp-4">
           {{ desc }}
         </p>
         <div class="w-full gap-2 flex">
@@ -65,6 +65,7 @@ const router = useRouter()
 async function handleClick() {
   await incrementTotalReadById(props.id)
   router.push(props.path)
+  window.scrollTo({ top: 0, behavior: 'smooth' }) // scroll ke atas
 }
 
 const formattedDate = new Date(props.date_published).toLocaleDateString('en-US', {

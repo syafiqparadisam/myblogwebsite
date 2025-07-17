@@ -23,8 +23,8 @@ const isOpen = ref(false)
           <RouterLink to="/blog/education">
             <span class="text-md text-blue-900">Education</span>
           </RouterLink>
-          <RouterLink to="/blog/healthy">
-            <span class="text-md text-blue-900">Healthy</span>
+          <RouterLink to="/blog/finance">
+            <span class="text-md text-blue-900">Finance</span>
           </RouterLink>
           <RouterLink to="/blog/politic">
             <span class="text-md text-blue-900">Politic</span>
@@ -57,9 +57,9 @@ const isOpen = ref(false)
               >Education</span
             >
           </RouterLink>
-          <RouterLink to="/blog/healthy" class="w-full">
+          <RouterLink to="/blog/finance" class="w-full">
             <span class="text-md text-blue-900 hover:text-blue-600 transition duration-200"
-              >Healthy</span
+              >Finance</span
             >
           </RouterLink>
           <RouterLink to="/blog/politic" class="w-full">

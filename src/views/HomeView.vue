@@ -50,7 +50,7 @@ totalLikes()
 
 <template>
   <div>
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+    <section className="mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 bg-gray-100 w-full">
       <div className="flex w-full justify-center items-center">
         <div className="flex-col">
           <div className="flex-col items-center text-center justify-center ">
@@ -58,8 +58,7 @@ totalLikes()
               Welcome To Syafiq's blog
             </h1>
             <p className="lg:text-lg text-xs md:text-sm mt-5 leading-relaxed text-center">
-              Ini adalah ruang pribadiku untuk menulis, menuangkan ide, dan menceritakan kisah yang
-              layak dikenang.
+             This is my personal space to write, pour out ideas, and telling stories.
             </p>
           </div>
 

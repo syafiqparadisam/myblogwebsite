@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useLanguageStore = defineStore('language', {
   state: () => ({
-    language: 'id', // atau 'en' sebagai default
+    language: 'en', // atau 'en' sebagai default
   }),
   actions: {
     setLanguage(code: string) {

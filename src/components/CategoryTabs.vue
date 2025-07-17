@@ -48,7 +48,7 @@
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
       >
       <card-blog
-          v-for="blog in forYouBlog"
+          v-for="blog in popularBlog"
           :key="blog.id"
           :id="blog.id"
           :picture="blog.picture_path"
@@ -68,7 +68,7 @@
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
       >
       <card-blog
-          v-for="blog in forYouBlog"
+          v-for="blog in newBlog"
           :key="blog.id"
           :id="blog.id"
           :picture="blog.picture_path"
@@ -88,10 +88,12 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import CardBlog from './CardBlog.vue'
-import { getDataForYou } from '@/lib/query'
+import { getDataForYou,getPopularBlog, getNewBlog } from '@/lib/query'
 import type { BlogStat } from '@/lib/types'
 
 const forYouBlog = ref<BlogStat[] | null>([])
+const popularBlog = ref<BlogStat[] | null>([])
+const newBlog = ref<BlogStat[] | null>([])
 
 async function fetchForYouBlog() {
   try {
@@ -102,8 +104,29 @@ async function fetchForYouBlog() {
   }
 }
 
+async function fetchPopularBlog() {
+ try {
+    const data = await getPopularBlog()
+    popularBlog.value = data
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+
+async function fetchNewBlog() {
+ try {
+    const data = await getNewBlog()
+    newBlog.value = data
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 onMounted(() => {
   fetchForYouBlog()
+  fetchPopularBlog()
+  fetchNewBlog()
 })
 
 const activeTab = ref('foryou')

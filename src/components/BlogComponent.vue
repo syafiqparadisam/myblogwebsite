@@ -147,8 +147,8 @@ const showAlert = ref(false)
 let alertTimeout: ReturnType<typeof setTimeout>
 
 const language = [
-  { name: 'Indonesia', code: 'id' },
   { name: 'English', code: 'en' },
+  { name: 'Indonesia', code: 'id' },
 ]
 const selectedLanguage = ref(language[0])
 watch(selectedLanguage, (newVal) => {
