@@ -15,7 +15,7 @@ useHead({
    link: [
     {
       rel: "canonical",
-      href: `${import.meta.env.VITE_BASE_URL}/blog/tech/pgpencryption`
+      href: `${import.meta.env.VITE_BASE_URL}/blog/tech/what-is-openpgp-encryption`
     }
   ],
   meta: [

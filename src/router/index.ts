@@ -16,12 +16,12 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/blog/tech/pgpencryption",
+      path: "/blog/tech/what-is-openpgp-encryption",
       name: "PGPEncryption",
       component: PGPEncryption
     },
       {
-      path: "/blog/tech/monero",
+      path: "/blog/tech/what-is-monero",
       name: "MoneroCoinBlog",
       component: MoneroCoin
     },

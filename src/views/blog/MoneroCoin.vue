@@ -17,7 +17,7 @@ useHead({
    link: [
     {
       rel: "canonical",
-      href: `${import.meta.env.VITE_BASE_URL}/blog/tech/monero`
+      href: `${import.meta.env.VITE_BASE_URL}/blog/tech/what-is-monero`
     }
   ],
   meta: [
