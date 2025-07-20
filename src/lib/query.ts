@@ -1,10 +1,28 @@
 import { supabase } from '../lib/SupabaseClient'
+import type { Comments } from './types'
 
 const isReady = true
 const table = import.meta.env.VITE_ENVIRONMENT == 'develop' ? 'articles_dev' : 'articles'
+const commentTables = import.meta.env.VITE_ENVIRONMENT == 'develop' ? 'comments_dev' : 'comments'
 
 export async function getDataForYou() {
   const { data } = await supabase.from(table).select().eq('is_ready', isReady)
+  return data
+}
+
+export async function insertComments(article_id: number, name: string | null, content: string) {
+  const { error } = await supabase.from(commentTables).insert({ article_id, name, content })
+
+  if (error) {
+    console.error('Gagal mengirim komentar:', error.message)
+    throw error
+  }
+
+  return true
+}
+
+export async function getCommentByArticleCode(article_id: number): Promise<Comments[] | null> {
+  const { data } = await supabase.from(commentTables).select().eq('article_id', article_id).eq('approved', true)
   return data
 }
 
@@ -76,7 +94,6 @@ export async function getTechBlog() {
     .eq('is_ready', isReady)
   return await data
 }
-
 
 export async function getFinanceBlog() {
   const { data } = await supabase

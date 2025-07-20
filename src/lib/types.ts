@@ -10,3 +10,12 @@ export type BlogStat = {
   total_read: number
   like: number
 }
+
+export type Comments = {
+  id: number
+  article_id:number
+  name: string | null
+  content: string
+  created_at: Date
+  approved: boolean
+}

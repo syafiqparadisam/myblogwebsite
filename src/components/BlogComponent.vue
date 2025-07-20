@@ -3,6 +3,7 @@
     <!-- Main Content -->
     <main class="max-w-4xl mx-auto px-4">
       <!-- Article Header -->
+
       <div class="flex justify-end">
         <div class="mt-5 mb-2">
           <Listbox v-model="selectedLanguage">
@@ -52,12 +53,64 @@
           </Listbox>
         </div>
       </div>
+      <div class="flex flex-wrap items-center gap-3 p-2 mr-4">
+        <!-- WhatsApp -->
+        <a
+          :href="`https://wa.me/?text=${encodeURIComponent(url)}`"
+          target="_blank"
+          title="WhatsApp"
+        >
+          <MessageCircle class="w-5 h-5 text-green-600 hover:text-green-700" />
+        </a>
 
+        <!-- Facebook -->
+        <a
+          :href="`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`"
+          target="_blank"
+          title="Facebook"
+        >
+          <Facebook class="w-5 h-5 text-blue-600 hover:text-blue-700" />
+        </a>
+
+        <!-- Telegram -->
+        <a
+          :href="`https://t.me/share/url?url=${encodeURIComponent(url)}`"
+          target="_blank"
+          title="Telegram"
+        >
+          <Send class="w-5 h-5 text-blue-400 hover:text-blue-500" />
+        </a>
+
+        <!-- Twitter / X -->
+        <a
+          :href="`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`"
+          target="_blank"
+          title="Twitter"
+        >
+          <Twitter class="w-5 h-5 text-black hover:text-gray-800" />
+        </a>
+
+        <!-- LinkedIn -->
+        <a
+          :href="`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`"
+          target="_blank"
+          title="LinkedIn"
+        >
+          <Linkedin class="w-5 h-5 text-blue-800 hover:text-blue-900" />
+        </a>
+        <!-- Copy Link -->
+        <button @click="copyLink" title="Copy link">
+          <Copy class="w-5 h-5 text-gray-600 hover:text-black" />
+        </button>
+      </div>
+      <p class="text-xs mt-1 text-gray-400 italic" v-if="articlePublished">
+        Published on {{ articlePublished }}
+      </p>
       <article>
         <slot />
       </article>
       <!-- Article Footer -->
-      <div class="px-6 py-6">
+      <div class="px-2 py-6">
         <div class="flex flex-wrap items-center justify-between">
           <div class="flex flex-wrap items-center space-x-4">
             <span class="text-sm text-gray-500 md:mb-0 mb-2">Tags:</span>
@@ -75,11 +128,57 @@
               </div>
             </div>
           </div>
-          <div class="flex justify-center items-center flex-wrap">
-            <div class="flex p-2">
-              <span class="text-md text-gray-500">Share :</span>
-              <button @click="copyLink">
-                <Link class="p-1 hover:cursor-pointer" />
+          <div class="flex items-center flex-wrap">
+            <span class="text-md text-gray-500">Share:</span>
+            <div class="flex items-center gap-3 p-2 mr-4 flex-wrap">
+              <!-- WhatsApp -->
+              <a
+                :href="`https://wa.me/?text=${encodeURIComponent(url)}`"
+                target="_blank"
+                title="WhatsApp"
+              >
+                <MessageCircle class="w-5 h-5 text-green-600 hover:text-green-700" />
+              </a>
+
+              <!-- Facebook -->
+              <a
+                :href="`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`"
+                target="_blank"
+                title="Facebook"
+              >
+                <Facebook class="w-5 h-5 text-blue-600 hover:text-blue-700" />
+              </a>
+
+              <!-- Telegram -->
+              <a
+                :href="`https://t.me/share/url?url=${encodeURIComponent(url)}`"
+                target="_blank"
+                title="Telegram"
+              >
+                <Send class="w-5 h-5 text-blue-400 hover:text-blue-500" />
+              </a>
+
+              <!-- Twitter / X -->
+              <a
+                :href="`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`"
+                target="_blank"
+                title="Twitter"
+              >
+                <Twitter class="w-5 h-5 text-black hover:text-gray-800" />
+              </a>
+
+              <!-- LinkedIn -->
+              <a
+                :href="`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`"
+                target="_blank"
+                title="LinkedIn"
+              >
+                <Linkedin class="w-5 h-5 text-blue-800 hover:text-blue-900" />
+              </a>
+
+              <!-- Copy Link -->
+              <button @click="copyLink" title="Copy link">
+                <Copy class="w-5 h-5 text-gray-600 hover:text-black" />
               </button>
             </div>
             <div class="flex">
@@ -125,27 +224,97 @@
             </div>
           </Transition>
         </div>
-        <p class="text-xs mt-1 text-gray-400 italic">Published on {{ formattedDate }}</p>
+        <p class="text-xs mt-1 text-gray-400 italic" v-if="articlePublished">
+          Published on {{ articlePublished }}
+        </p>
+        <div class="mt-10">
+          <h2 class="text-xl font-semibold mb-4">💬 Tanggapan</h2>
+
+          <form @submit.prevent="submitComment" class="space-y-2">
+            <input
+              v-model="name"
+              type="text"
+              placeholder="Name (optional)"
+              class="w-full border px-3 py-2 rounded"
+            />
+
+            <textarea
+              v-model="content"
+              required
+              placeholder="Write your opinion..."
+              class="w-full border px-3 py-2 rounded min-h-[100px]"
+            ></textarea>
+
+            <button
+              type="submit"
+              class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+             Send
+            </button>
+          </form>
+
+          <div class="mt-6 space-y-3 max-h-96 overflow-scroll">
+            <div v-for="comment in props.comments" :key="comment.id" class="border p-3 rounded">
+              <div class="text-sm text-gray-600 mb-1">
+                <strong>{{ comment.name || 'Anonim' }}</strong> –
+                {{ formattedDate(comment.created_at) }}
+              </div>
+              <p class="text-gray-800 whitespace-pre-line">{{ comment.content }}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useLanguageStore } from '@/store/language'
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue'
-import { Globe,BookOpen } from 'lucide-vue-next'
+import {
+  Globe,
+  BookOpen,
+  MessageCircle,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Copy,
+  Send,
+} from 'lucide-vue-next'
+import { Heart } from 'lucide-vue-next'
+import { decrementLikeByid, incrementLikeByid, insertComments } from '@/lib/query'
+import type { Comments } from '@/lib/types'
+
+const url = window.location.href
+const title = document.title
+
 const props = defineProps<{
   tags: string[]
   id: number
   total_like: number
-  date_published: Date
+  date_published: string | null
   reader: number
+  comments: Comments[] | null
 }>()
+
+const name = ref<string>('')
+const content = ref<string>('')
+
+async function submitComment() {
+  if (!content.value.trim()) return
+
+  const res = await insertComments(props.id, name.value, content.value)
+  if (!res) {
+    console.error('error while inserting comment')
+  }
+
+  name.value = ''
+  content.value = ''
+}
+
 const showAlert = ref(false)
 let alertTimeout: ReturnType<typeof setTimeout>
-
 const language = [
   { name: 'English', code: 'en' },
   { name: 'Indonesia', code: 'id' },
@@ -154,12 +323,40 @@ const selectedLanguage = ref(language[0])
 watch(selectedLanguage, (newVal) => {
   useLanguageStore().setLanguage(newVal.code)
 })
+const formattedDate = (date: Date | string) => {
+  if (!date) return null // atau "Loading..."
 
-const formattedDate = new Date(props.date_published).toLocaleDateString('en-US', {
-  month: 'long',
-  day: '2-digit',
-  year: 'numeric',
+  const dates = new Date(date)
+  if (isNaN(dates.getTime())) return 'Invalid date'
+
+  return dates.toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  })
+}
+
+
+const articlePublished = computed(() => {
+  const raw = props.date_published
+  if (!raw) return null // atau "Loading..."
+
+  const date = new Date(raw)
+  if (isNaN(date.getTime())) return 'Invalid date'
+
+  return date.toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  })
 })
+
 
 const hideAlert = () => {
   showAlert.value = false
@@ -167,11 +364,10 @@ const hideAlert = () => {
     clearTimeout(alertTimeout)
   }
 }
-import { Link, Heart } from 'lucide-vue-next'
-import { decrementLikeByid, incrementLikeByid } from '@/lib/query'
+
 function copyLink() {
   navigator.clipboard
-    .writeText(window.location.href)
+    .writeText(url)
     .then(() => {
       showAlert.value = true
       // Clear existing timeout
@@ -226,4 +422,7 @@ const toggleLike = () => {
     }
   }, 1000)
 }
+
+onMounted(() => {
+})
 </script>
