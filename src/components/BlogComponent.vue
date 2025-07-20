@@ -253,7 +253,7 @@
             </button>
           </form>
 
-          <div class="mt-6 space-y-3 max-h-96 overflow-scroll">
+          <div class="mt-6 space-y-3 max-h-96 overflow-y-scroll" style="scrollbar-width: none">
             <div v-for="comment in props.comments" :key="comment.id" class="border p-3 rounded">
               <div class="text-sm text-gray-600 mb-1">
                 <strong>{{ comment.name || 'Anonim' }}</strong> –
